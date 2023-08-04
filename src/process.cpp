@@ -14,7 +14,7 @@ using std::stol;
 
 // ACCESSER FUNCTIONS
 
-// TODO: Return this process's ID, done?
+// TODO: Return this process's ID
 int Process::Pid() { 
     return pid_; }
 
@@ -22,27 +22,23 @@ int Process::Pid() {
 float Process::CpuUtilization() const { 
     return LinuxParser::ActiveJiffies(pid_);}
 
-// TODO: Return the command that generated this process, done
+// TODO: Return the command that generated this process
 string Process::Command() { 
     return LinuxParser::Command(pid_); }
 
-// TODO: Return this process's memory utilization, done
+// TODO: Return this process's memory utilization
 string Process::Ram() const { 
     return LinuxParser::Ram(pid_); }
 
-// TODO: Return the user (name) that generated this process, done
+// TODO: Return the user (name) that generated this process
 string Process::User() { 
     return LinuxParser::User(pid_); }
 
-// TODO: Return the age of this process (in seconds), done
+// TODO: Return the age of this process (in seconds)
 long int Process::UpTime() { 
     return LinuxParser::UpTime(pid_); }
 
 // TODO: Overload the "less than" comparison operator for Process objects
 // REMOVE: [[maybe_unused]] once you define the function
 bool Process::operator<(Process const& a) const {
-    // long x = stol(a.Ram());
-    // long y = stol(this->Ram());
-    // return (x < y);}
-    // return (a.Ram() < this->Ram());}
     return (a.CpuUtilization() < this->CpuUtilization());}

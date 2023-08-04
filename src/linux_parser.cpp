@@ -67,7 +67,7 @@ vector<int> LinuxParser::Pids() {
   return pids;
 }
 
-// TODO: Read and return the system memory utilization, done
+// TODO: Read and return the system memory utilization
 float LinuxParser::MemoryUtilization() {
   float MemTotal;
   float MemFree;
@@ -100,7 +100,7 @@ float LinuxParser::MemoryUtilization() {
   return mu;
 }
 
-// TODO: Read and return the system uptime; done
+// TODO: Read and return the system uptime
 long LinuxParser::UpTime() {
   long ut;
   long idle;
@@ -239,7 +239,7 @@ vector<string> LinuxParser::CpuUtilization() {
 }
 
 
-// TODO: Read and return the total number of processes, done
+// TODO: Read and return the total number of processes
 // Resource: https://stackoverflow.com/questions/1878001/how-do-i-check-if-a-c-stdstring-starts-with-a-certain-string-and-convert-a
 int LinuxParser::TotalProcesses() {
   int tp;
@@ -267,7 +267,7 @@ int LinuxParser::TotalProcesses() {
   return 0;
 }
 
-// TODO: Read and return the number of running processes, done
+// TODO: Read and return the number of running processes
 int LinuxParser::RunningProcesses() { 
   int rp;
   string line;
@@ -307,82 +307,7 @@ string LinuxParser::Command(int pid) {
     return c + "                                                                           ";
     }
   return c;
-
-  // string uid = Uid(pid) + "------";
-  // string name = User(pid) + "--------";
-  // string ans = uid + " " + name;
-  // return ans;
-
 }
-  // long idle = IdleJiffies();
-  // long non_idle = ActiveJiffies();
-  // long total = Jiffies();
-
-  // string ans = to_string(idle) + ", " + to_string(non_idle) + ", " + to_string(total);
-
-    // long utime = stol(sutime)/sysconf(_SC_CLK_TCK);
-  // long stime = stol(sstime)/sysconf(_SC_CLK_TCK);
-  // long cutime = stol(scutime)/sysconf(_SC_CLK_TCK);
-  // long cstime = stol(scstime)/sysconf(_SC_CLK_TCK);
-  // long st = stol(start_time)/sysconf(_SC_CLK_TCK);
-  
-  // total_time = (utime + stime + cutime + cstime);
-
-  // seconds = uptime - (st);
-  // use = (total_time/seconds)*100;
-
-  // string sutime;  //user time 
-  // string sstime;  //kernel mode time 
-  // string scutime;
-  // string scstime;
-  // string start_time;  // measured in seconds
-  // long uptime = UpTime();
-  // long total_time;
-  // long seconds;
-  // long use = 0;
-  // long temp;
-  // long total_time_sec;
-  // string line;
-  // string key;
-  // string a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w;
-  // std::ifstream filestream(kProcDirectory + to_string(pid) + kStatFilename);
-  // if (filestream.is_open()){
-  //   while (std::getline(filestream, line)){
-  //     std::istringstream linestream(line);
-  //     linestream >> a >> b >> c >> d >> e >> f >> g >> h >> i >> j >> k >> l >> m >> sutime >> sstime >> scutime >> scstime >> r >> s >> t >> u >> start_time >> w;
-  //     break;
-  //     }     
-  //   }
-
-  // if (a != to_string(pid)){
-  //   return to_string(use);
-  // }
-
-
-  // long utime = stol(sutime);
-  // long stime = stol(sstime);
-  // long cutime = stol(scutime);
-  // long cstime = stol(scstime);
-  // long st = stol(start_time);
-  
-  // total_time = (utime + stime + cutime + cstime);
-  // seconds = uptime - (st/sysconf(_SC_CLK_TCK));
-  // total_time_sec = total_time/sysconf(_SC_CLK_TCK);
-  // if (seconds > 0) {
-  //   use = 100*total_time_sec/seconds;
-    
-  // string use2 = "     PID " + to_string(pid) + "     tts" +
-  //               to_string(total_time_sec) + "     sec" +
-  //               to_string(seconds) + "    USE " +
-  //               to_string(use) + "    !!!!!";
-
-
-  //   return use2;
-//   }
-// }
-
-
-
 
 // TODO: Read and return the memory used by a process
 // REMOVE: [[maybe_unused]] once you define the function
@@ -412,7 +337,7 @@ string LinuxParser::Ram(int pid) {
 }
 
 
-// TODO: Read and return the user ID associated with a process, done?
+// TODO: Read and return the user ID associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Uid(int pid) { 
     string uid;
@@ -438,7 +363,7 @@ string LinuxParser::Uid(int pid) {
   return string();
 }
 
-// TODO: Read and return the user associated with a process, done?
+// TODO: Read and return the user associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::User(int pid) { 
   string uid = Uid(pid);
@@ -466,7 +391,7 @@ string LinuxParser::User(int pid) {
   return "back up"; 
 }
 
-// TODO: Read and return the uptime of a process, done?
+// TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
 long LinuxParser::UpTime(int pid){
   string ut;
