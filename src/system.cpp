@@ -26,7 +26,7 @@ vector<Process>& System::Processes() {
     vector<int> pids = LinuxParser::Pids();
     
     if (processes_.size() > 0){
-        processes_ = {};
+        processes_.clear();
     }
     int p;
     int stop = pids.size();

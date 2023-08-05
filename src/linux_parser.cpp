@@ -130,7 +130,6 @@ long LinuxParser::Jiffies() {
 // TODO: Read and return the number of active jiffies for a PID
 // REMOVE: [[maybe_unused]] once you define the function
 float LinuxParser::ActiveJiffies(int pid) { 
-  int p_id = pid;
   string sutime;  //user time 
   string sstime;  //kernel mode time 
   string scutime;
@@ -180,7 +179,7 @@ long LinuxParser::ActiveJiffies() {
 
   long non_idle;
 
-  non_idle = stol(cpu[1]) + stol(cpu[2]) + stol(cpu[3]) + stol(cpu[6]) + stol(cpu[7]) + stol(cpu[8]);
+  non_idle = stol(cpu[0]) + stol(cpu[1]) + stol(cpu[2]) + stol(cpu[5]) + stol(cpu[6]) + stol(cpu[7]);
 
   return non_idle;
 }
@@ -191,7 +190,7 @@ long LinuxParser::IdleJiffies() {
 
   long idle;
 
-  idle = stol(cpu[4]) + stol(cpu[5]);
+  idle = stol(cpu[3]) + stol(cpu[4]);
 
   return idle;
 }
@@ -202,16 +201,16 @@ vector<string> LinuxParser::CpuUtilization() {
   string key;
   string line;
 
-  string user;    //1
-  string nice;    //2
-  string system;  //3
-  string idle;    //4
-  string iowait;  //5
-  string irq;     //6
-  string softirq; //7
-  string steal;   //8
-  string guest;   //9
-  string guest_nice;  //10
+  string user;    //0
+  string nice;    //1
+  string system;  //2
+  string idle;    //3
+  string iowait;  //4
+  string irq;     //5
+  string softirq; //6
+  string steal;   //7
+  string guest;   //8
+  string guest_nice;  //9
 
   vector<string> cpu; 
 
@@ -220,22 +219,22 @@ vector<string> LinuxParser::CpuUtilization() {
     while (std::getline(filestream, line)) {
       std::istringstream linestream(line);
       linestream >> key >> user >> nice >> system >> idle >> iowait >> irq >> softirq >> steal >> guest >> guest_nice;
+      if (key == "cpu") {
+        cpu.push_back(user);  
+        cpu.push_back(nice);    
+        cpu.push_back(system);  
+        cpu.push_back(idle);   
+        cpu.push_back(iowait);  
+        cpu.push_back(irq);     
+        cpu.push_back(softirq);
+        cpu.push_back(steal);   
+        cpu.push_back(guest);  
+        cpu.push_back(guest_nice);
+
+        return cpu;
+      }
     }
   }
-
-  cpu.push_back(user);  ///1
-  cpu.push_back(nice);    //2
-  cpu.push_back(system);  //3
-  cpu.push_back(idle);    //4
-  cpu.push_back(iowait);  //5
-  cpu.push_back(irq);     //6
-  cpu.push_back(softirq); //7
-  cpu.push_back(steal);   //8
-  cpu.push_back(guest);   //9
-  cpu.push_back(guest_nice);  //10
-
-  return cpu;
-
 }
 
 
