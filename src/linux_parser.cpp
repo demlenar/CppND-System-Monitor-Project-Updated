@@ -235,6 +235,7 @@ vector<string> LinuxParser::CpuUtilization() {
       }
     }
   }
+  return {};
 }
 
 
